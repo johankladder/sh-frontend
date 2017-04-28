@@ -1,0 +1,16 @@
+# Setup:
+machine:
+  php:
+    # Set PHP version to 7.1.0:
+    version: 7.1.0
+
+# Testing steps:
+test:
+  override:
+    - vendor/bin/codecept run
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: sh-frontend
