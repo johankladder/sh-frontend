@@ -1,0 +1,21 @@
+{
+  "name": "sh-frontend",
+  "homepage": "https://github.com/johankladder/sh-frontend",
+  "authors": [
+    "Johan Kladder <j.kladder@st.hanze.nl>"
+  ],
+  "description": "The frontend application of the StadiumHopper",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
