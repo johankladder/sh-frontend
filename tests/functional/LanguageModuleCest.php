@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Composer\Autoload\ClassLoader;
 use AppBundle\Modules\LanguageModule;
 
 class LanguageModuleCest
@@ -7,6 +9,11 @@ class LanguageModuleCest
 
     public function _before()
     {
+
+
+        $loader = require __DIR__.'/../../vendor/autoload.php';
+
+        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
         $_SESSION = []; // Define session
     }
 
