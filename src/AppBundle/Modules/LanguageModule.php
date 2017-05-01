@@ -14,10 +14,24 @@ class LanguageModule
 
     static $langs;
 
+    public function __construct()
+    {
+        $this->load();
+    }
+
+    private function load()
+    {
+        if(!array_key_exists('lang', $_SESSION))
+        {
+           $_SESSION['lang'] = self::DEFAULT_LANG;
+        }
+    }
+
     public function getLangs()
     {
-        $ex = new YamlExtractor();
-        $langs = $ex->extractFile(__DIR__ . '/../../local/_lang.yml');
+        if(!self::$langs)
+          $ex = new YamlExtractor();
+          $langs = $ex->extractFile(__DIR__ . '/../../local/_lang.yml');
         return $langs;
     }
 
@@ -63,16 +77,11 @@ class LanguageModule
 
     private static function loadLangFiles()
     {
-        $currentLang = self::load();
+        $currentLang = $_SESSION['lang'];
         $yamlExtractor  = new YamlExtractor();
         $path = $currentLang . '_lang.yml';
         self::$langValues = $yamlExtractor->extractFile(__DIR__ . '/../../local/' .$path);
     }
 
-    public static function load()
-    {
-        if(array_key_exists('lang', $_SESSION))
-          return $_SESSION['lang'];
-        return self::DEFAULT_LANG;
-    }
+
 }

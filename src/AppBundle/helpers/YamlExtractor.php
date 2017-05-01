@@ -7,34 +7,16 @@ use Symfony\Component\Yaml\Yaml;
 class YamlExtractor
 {
 
-    private $fileDir;
-
-    private static $content;
-
-    public function setup($fileDir)
+    /**
+     * Extracts an YAML file.
+     * @param  string $fileDir The location of the file
+     * @return mixed[]         YAML file parsed into an array.
+     */
+    public function extractFile(string $fileDir)
     {
-        if(!file_exists($fileDir))
-            return false;
-        $this->fileDir = $fileDir;
-        return true;
-    }
-
-    public function extract()
-    {
-        if(!$this->fileDir)
-          return null;
-        return $this->extractFile($this->fileDir);
-    }
-
-    public function extractFile($fileDir)
-    {
-        self::$content =  Yaml::parse(file_get_contents($fileDir));
-        return self::$content;
-    }
-
-    public static function getValue($key)
-    {
-        return self::$content[$key]['value'];
+        if(file_exists($fileDir))
+          return Yaml::parse(file_get_contents($fileDir));
+        return null;
     }
 
 }

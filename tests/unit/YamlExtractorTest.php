@@ -18,13 +18,9 @@ class YamlExtractorTest extends \Codeception\Test\Unit
 
     public function testExtractionHappyFlow()
     {
-        // Load the test language file:
-        $this->assertTrue(
-          $this->yamlExtractor
-          ->setup(codecept_data_dir() . '/test_files/lang.yaml'));
-
         // Begin extraction:
-        $content = $this->yamlExtractor->extract();
+        $content = $this->yamlExtractor->extractFile(codecept_data_dir()
+        . '/test_files/lang.yaml');
 
         // Check keys:
         $this->assertTrue(array_key_exists('key1', $content));
@@ -42,10 +38,7 @@ class YamlExtractorTest extends \Codeception\Test\Unit
     public function testFileNotExists()
     {
         // Load the test language file:
-        $this->assertFalse(
-          $this->yamlExtractor
-          ->setup(codecept_data_dir() . '/test_files/not-exists.csv'));
-
-        $this->assertNull($this->yamlExtractor->extract());
+        $this->assertNull($this->yamlExtractor->extractFile(codecept_data_dir()
+        . '/test_files/not-exists.csv'));
     }
 }

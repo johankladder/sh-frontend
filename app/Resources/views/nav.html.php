@@ -1,12 +1,3 @@
-<?php
-
-use AppBundle\Modules\LanguageModule;
-
-$lang = new LanguageModule();
-LanguageModule::load();
-
-?>
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,24 +20,12 @@ LanguageModule::load();
       <li><a href="#"><?= $lang->getValue('profile'); ?></a></li>
     </ul>
 
-    <!-- Login side -->
+    <!-- Settings side-->
     <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-         <a   href="#" class="dropdown-toggle"
-              data-toggle="dropdown" role="button"
-              aria-haspopup="true" aria-expanded="false">
-              <?= $lang->getValue('language') ?><span class="caret"></span>
-          </a>
-         <ul class="dropdown-menu">
-          <?php
-              foreach($lang->getLangs() as $langKey => $value)
-              {
-                  $link =  $view['router']->path('language', array('lang' => $langKey));
-                  echo '<li><a href="' . $link . '">' . $value . '</a></li>';
-              }
-          ?>
-         </ul>
-      </li>
+    <!-- Language changing unit -->
+    <?php echo $view->render('settings/_lang.html.php', array('lang' => $lang)) ?>
+
+      <!-- Login side-->
       <li>
         <a href="<?php echo $view['router']->path('register') ?>">
           <?= $lang->getValue('register'); ?>
