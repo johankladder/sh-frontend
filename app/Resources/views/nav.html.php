@@ -1,3 +1,11 @@
+<?php
+
+use AppBundle\Modules\LanguageModule;
+
+$lang = new LanguageModule();
+
+?>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,16 +22,24 @@
     <!-- Menu -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><a href="#">Map</a></li>
-      <li><a href="#">My Stadiums</a></li>
-      <li><a href="#">Top lists</a></li>
-      <li><a href="#">Profile</a></li>
+      <li><a href="#"><?= $lang->getValue('map'); ?></a></li>
+      <li><a href="#"><?= $lang->getValue('my_stadiums'); ?></a></li>
+      <li><a href="#"><?= $lang->getValue('top_list'); ?></a></li>
+      <li><a href="#"><?= $lang->getValue('profile'); ?></a></li>
     </ul>
 
     <!-- Login side -->
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="<?php echo $view['router']->path('register') ?>">Register</a></li>
-      <li><a href="#">Logout</a></li>
+      <li>
+        <a href="<?php echo $view['router']->path('register') ?>">
+          <?= $lang->getValue('register'); ?>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <?= $lang->getValue('log_out'); ?>
+        </a>
+      </li>
     </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -2,39 +2,66 @@
 
 namespace AppBundle\Modules;
 
-use Symfony\Component\Yaml\Yaml;
+use AppBundle\helpers\YamlExtractor;
 
 class LanguageModule
 {
+    // The default language of the application is 'en' -> English
+    const DEFAULT_LANG = 'en';
 
-    private $fileDir;
+    // Static storage for the language that is used for the values
+    static $langValues;
 
-    private static $content;
+    // Static storage of the currentLang that is used
+    static $currentLang;
 
-    public function setup($fileDir)
+    /**
+     * Method for obtaining the language value of an given language key.
+     * Please check the docs/languages/howto file to read about these language
+     * files and how they are loaded.
+     *
+     * @param  string $langKey  The key liked to recieve the language-value from
+     * @return string           Language value that was found or the given langKey
+     *                          when value could'nt be obtained.
+     */
+    public function getValue(string $langKey)
     {
-        if(!file_exists($fileDir))
-            return false;
-        $this->fileDir = $fileDir;
-        return true;
+        return $this->getLanguageValue($langKey);
     }
 
-    public function extract()
+    /**
+     * Sets the language. After that it will reset all previous language specific
+     * entries.
+     * @param string $language    The language like to set.
+     */
+    public static function setLang(string $language)
     {
-        if(!$this->fileDir)
-          return null;
-        return $this->extractFile($this->fileDir);
+        self::$currentLang = $language;
+
+        // reset langvalues:
+        self::$langValues = null;
     }
 
-    private function extractFile($fileDir)
+    private static function getLanguageValue(string $langKey)
     {
-        self::$content =  Yaml::parse(file_get_contents($fileDir));
-        return self::$content;
+        if(empty(self::$langValues))
+          self::loadLangFiles();
+        return self::obtainValueFromLangValues($langKey);
     }
 
-    public static function getValue($key)
+    private static function obtainValueFromLangValues(string $langKey)
     {
-        return self::$content[$key]['value'];
+        if(array_key_exists($langKey, self::$langValues))
+          return self::$langValues[$langKey];
+        return $langKey;
     }
 
+    private static function loadLangFiles()
+    {
+        if(!self::$currentLang)
+          self::$currentLang = self::DEFAULT_LANG;
+        $yamlExtractor  = new YamlExtractor();
+        $path = self::$currentLang . '_lang.yml';
+        self::$langValues = $yamlExtractor->extractFile(__DIR__ . '/../../local/' .$path);
+    }
 }
