@@ -1,30 +1,26 @@
 <?php
 
-use AppBundle\Modules\LanguageModule;
+use AppBundle\helpers\YamlExtractor;
 
-class LanguageModuleTest extends \Codeception\Test\Unit
+class YamlExtractorTest extends \Codeception\Test\Unit
 {
     /**
      * @var \UnitTester
      */
     protected $tester;
 
-    private $languageModule;
+    private $yamlExtractor;
 
     protected function _before()
     {
-        $this->languageModule = new LanguageModule();
+        $this->yamlExtractor = new YamlExtractor();
     }
 
     public function testExtractionHappyFlow()
     {
-        // Load the test language file:
-        $this->assertTrue(
-          $this->languageModule
-          ->setup(codecept_data_dir() . '/test_files/lang.yaml'));
-
         // Begin extraction:
-        $content = $this->languageModule->extract();
+        $content = $this->yamlExtractor->extractFile(codecept_data_dir()
+        . '/test_files/lang.yaml');
 
         // Check keys:
         $this->assertTrue(array_key_exists('key1', $content));
@@ -42,10 +38,7 @@ class LanguageModuleTest extends \Codeception\Test\Unit
     public function testFileNotExists()
     {
         // Load the test language file:
-        $this->assertFalse(
-          $this->languageModule
-          ->setup(codecept_data_dir() . '/test_files/not-exists.csv'));
-
-        $this->assertNull($this->languageModule->extract());
+        $this->assertNull($this->yamlExtractor->extractFile(codecept_data_dir()
+        . '/test_files/not-exists.csv'));
     }
 }

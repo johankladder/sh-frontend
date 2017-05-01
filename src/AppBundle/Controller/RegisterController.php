@@ -6,14 +6,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class RegisterController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/register", name="register")
      */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.php');
+        return $this->render('register/index.html.php');
     }
 }
