@@ -12,8 +12,14 @@ class LanguageModule
     // Static storage for the language that is used for the values
     static $langValues;
 
-    // Static storage of the currentLang that is used
-    static $currentLang;
+    static $langs;
+
+    public function getLangs()
+    {
+        $ex = new YamlExtractor();
+        $langs = $ex->extractFile(__DIR__ . '/../../local/_lang.yml');
+        return $langs;
+    }
 
     /**
      * Method for obtaining the language value of an given language key.
@@ -36,9 +42,8 @@ class LanguageModule
      */
     public static function setLang(string $language)
     {
-        self::$currentLang = $language;
+        $_SESSION['lang'] = $language;
 
-        // reset langvalues:
         self::$langValues = null;
     }
 
@@ -58,10 +63,16 @@ class LanguageModule
 
     private static function loadLangFiles()
     {
-        if(!self::$currentLang)
-          self::$currentLang = self::DEFAULT_LANG;
+        $currentLang = self::load();
         $yamlExtractor  = new YamlExtractor();
-        $path = self::$currentLang . '_lang.yml';
+        $path = $currentLang . '_lang.yml';
         self::$langValues = $yamlExtractor->extractFile(__DIR__ . '/../../local/' .$path);
+    }
+
+    public static function load()
+    {
+        if(array_key_exists('lang', $_SESSION))
+          return $_SESSION['lang'];
+        return self::DEFAULT_LANG;
     }
 }

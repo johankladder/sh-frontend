@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  use AppBundle\Modules\LanguageModule;
+?>
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -11,12 +14,3 @@
 
         <?php require(__DIR__ . '/nav.html.php'); ?>
       </head>
-
-
-
-
-<?php
-  use AppBundle\Modules\LanguageModule;
-?>
-
-<?php $view['slots']->output('body') ?>
