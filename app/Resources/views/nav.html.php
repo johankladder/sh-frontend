@@ -30,6 +30,11 @@
         </a>
       </li>
       <li>
+        <a href="<?php echo $view['router']->path('login') ?>">
+          <?= $view['translator']->trans('Login'); ?>
+        </a>
+      </li>
+      <li>
         <a href="#">
           <?= $view['translator']->trans('Logout'); ?>
         </a>
