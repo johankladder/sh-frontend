@@ -26,8 +26,23 @@ class RegisterController extends Controller
         ->add('save', SubmitType::class, array('label' => 'Register'))
         ->getForm();
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+          $task = $form->getData();
+          return $this->redirectToRoute('success');
+        }
+
         return $this->render('register/index.html.php', [
           'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/register-success", name="success")
+     */
+    public function succesAction(Request $request)
+    {
+        return $this->render('register/success.html.php');
     }
 }
