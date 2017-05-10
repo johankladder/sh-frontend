@@ -14,26 +14,24 @@
     <!-- Menu -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><a href="#"><?= $lang->getValue('map'); ?></a></li>
-      <li><a href="#"><?= $lang->getValue('my_stadiums'); ?></a></li>
-      <li><a href="#"><?= $lang->getValue('top_list'); ?></a></li>
-      <li><a href="#"><?= $lang->getValue('profile'); ?></a></li>
+      <li><a href="#"><?= $view['translator']->trans('Map'); ?></a></li>
+      <li><a href="#"><?= $view['translator']->trans('My Stadiums'); ?></a></li>
+      <li><a href="#"><?= $view['translator']->trans('Top List'); ?></a></li>
+      <li><a href="#"><?= $view['translator']->trans('Profile'); ?></a></li>
     </ul>
 
     <!-- Settings side-->
     <ul class="nav navbar-nav navbar-right">
-    <!-- Language changing unit -->
-    <?php echo $view->render('settings/_lang.html.php', array('lang' => $lang)) ?>
 
       <!-- Login side-->
       <li>
         <a href="<?php echo $view['router']->path('register') ?>">
-          <?= $lang->getValue('register'); ?>
+          <?= $view['translator']->trans('Register'); ?>
         </a>
       </li>
       <li>
         <a href="#">
-          <?= $lang->getValue('log_out'); ?>
+          <?= $view['translator']->trans('Logout'); ?>
         </a>
       </li>
     </ul>
