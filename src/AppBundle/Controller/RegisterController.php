@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Models\RegisterUser;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegisterController extends Controller
@@ -20,9 +22,10 @@ class RegisterController extends Controller
       $registerUser = new RegisterUser();
 
       $form = $this->createFormBuilder($registerUser)
-        ->add('email', TextType::class)
+        ->add('email', EmailType::class)
         ->add('username', TextType::class)
-        ->add('password', TextType::class)
+        ->add('password', PasswordType::class)
+        ->add('passwordConfirmation', PasswordType::class)
         ->add('save', SubmitType::class, array('label' => 'Register'))
         ->getForm();
 

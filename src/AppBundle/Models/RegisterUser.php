@@ -8,6 +8,7 @@ class RegisterUser
   protected $email;
   protected $username;
   protected $password;
+  protected $passwordConfirmation;
 
   public function getEmail()
   {
@@ -24,6 +25,11 @@ class RegisterUser
       return $this->password;
   }
 
+  public function getPasswordConfirmation()
+  {
+      return $this->passwordConfirmation;
+  }
+
   public function setEmail($email)
   {
       $this->email = $email;
@@ -37,6 +43,11 @@ class RegisterUser
   public function setPassword($password)
   {
       $this->password = $password;
+  }
+
+  public function setPasswordConfirmation($passwordConfirmation)
+  {
+      $this->passwordConfirmation = $passwordConfirmation;
   }
 
 }
