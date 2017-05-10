@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <?php
 
-use AppBundle\Modules\LanguageModule;
-
-$lang = new LanguageModule();
-
 ?>
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Welcome</title>
+        <title><?= $view['translator']->trans('Welcome'); ?></title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('assets/vendor/bootstrap/dist/css/bootstrap.min.css') ?>">
         <link rel="stylesheet" href="<?php echo $view['assets']->getUrl('assets/css/sh-css.css') ?>">
