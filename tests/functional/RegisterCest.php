@@ -2,7 +2,16 @@
 
 namespace tests\functional;
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
+
 class RegisterCest {
+
+    public function _before()
+    {
+        $loader = require __DIR__.'/../../vendor/autoload.php';
+        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+        $_SESSION = []; // Define session
+    }
 
     /**
      * Correct form.
