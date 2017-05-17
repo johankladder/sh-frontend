@@ -20,3 +20,6 @@ tests/_output/*
 composer.phar
 
 tests/_output/*
+
+# IDE
+.idea
