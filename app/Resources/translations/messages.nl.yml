@@ -12,6 +12,7 @@ Username: Gebruikersnaam
 Password: Wachtwoord
 Password confirmation: 'Wachtwoord herhalen'
 Registered successfully!: Registratie voltooid!
+Password confirmation was not the same as given password!: No
 
 # Login
 Login: Inloggen

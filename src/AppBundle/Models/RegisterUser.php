@@ -2,12 +2,16 @@
 
 namespace AppBundle\Models;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+
 class RegisterUser
 {
 
   protected $email;
   protected $username;
   protected $password;
+
   protected $passwordConfirmation;
 
   public function getEmail()
@@ -49,5 +53,24 @@ class RegisterUser
   {
       $this->passwordConfirmation = $passwordConfirmation;
   }
+
+  public function isPasswordLegal()
+  {
+
+      return !strcmp($this->password, $this->passwordConfirmation);
+
+  }
+
+
+    /**
+     * @param ClassMetadata $metadata
+     */
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+
+        $metadata->addGetterConstraint('passwordLegal', new Assert\IsTrue(array(
+            'message' => 'Password confirmation was not the same as given password!',
+        )));
+    }
 
 }
