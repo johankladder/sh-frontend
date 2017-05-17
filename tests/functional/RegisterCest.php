@@ -4,6 +4,13 @@ namespace tests\functional;
 
 class RegisterCest {
 
+    public function _before()
+    {
+        $loader = require __DIR__.'/../../vendor/autoload.php';
+        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+        $_SESSION = []; // Define session
+    }
+
     /**
      * Correct form.
      * @var array
