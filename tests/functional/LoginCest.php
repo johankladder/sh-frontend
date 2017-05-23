@@ -52,6 +52,15 @@ class LoginCest
         $I->see('Inloggegevens zijn niet correct');
     }
 
+    public function testGoneEntries(FunctionalTester $I)
+    {
+        $I->wantTo('Test if login specific entries are gone when authorized! :)');
+        $I->amOnRoute('login');
+        $this->fillForm(self::$correctForm, $I);
+        $I->dontSee('Inloggen');
+        $I->dontSee('Registreer');
+    }
+
     private function fillForm(array $params, \FunctionalTester $I)
     {
         $I->submitForm('form', $params);
