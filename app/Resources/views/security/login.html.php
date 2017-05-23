@@ -10,8 +10,9 @@
 
 ?>
 
-<?php require(__DIR__ . '/../base.html.php'); ?>
+<?php $view->extend('base.html.php') ?>
 
+<?php $view['slots']->start('body') ?>
 <?php if ($error): ?>
     <div>
         <?= $view['translator']->trans($error->getMessage()) ?>
@@ -27,3 +28,6 @@
 
     <button type="submit">login</button>
 </form>
+<?php $view['slots']->stop() ?>
+
+

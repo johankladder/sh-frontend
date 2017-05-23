@@ -1,7 +1,14 @@
-<?php require(__DIR__ . '/../base.html.php'); ?>
+<?php $view->extend('base.html.php') ?>
 
-<h1><?= $view['translator']->trans('Register'); ?></h1>
+<?php $view['slots']->start('body') ?>
+    <h1><?= $view['translator']->trans('Register'); ?></h1>
+    <?php echo $view['form']->start($form) ?>
+    <?php echo $view['form']->widget($form) ?>
+    <?php echo $view['form']->end($form) ?>
+<?php $view['slots']->stop() ?>
 
-<?php echo $view['form']->start($form) ?>
-<?php echo $view['form']->widget($form) ?>
-<?php echo $view['form']->end($form) ?>
+
+
+
+
+
