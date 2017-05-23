@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use AppBundle\Models\RegisterUser;
+use AppBundle\Models\RegisterForm;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -19,9 +19,9 @@ class RegisterController extends Controller
      */
     public function indexAction(Request $request)
     {
-      $registerUser = new RegisterUser();
+      $registerForm = new RegisterForm();
 
-      $form = $this->createFormBuilder($registerUser)
+      $form = $this->createFormBuilder($registerForm)
         ->add('email', EmailType::class)
         ->add('username', TextType::class)
         ->add('password', PasswordType::class)

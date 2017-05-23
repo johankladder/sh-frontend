@@ -4,6 +4,7 @@ namespace AppBundle\Models;
 
 class LoginForm
 {
+
     public $username;
 
     public $password;
