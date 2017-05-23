@@ -28,24 +28,11 @@ class RegisterCest {
         'form[passwordConfirmation]' => 'wrong_confirmation'
     ];
 
-    /**
-     * Login credentials
-     * @var array
-     */
-    public static $credentials = [
-        '_username' => 'admin',
-        '_password' => 'asdasd',
-    ];
-
-    public function _before(\FunctionalTester $I)
+    public function _before()
     {
         $loader = require __DIR__.'/../../vendor/autoload.php';
         AnnotationRegistry::registerLoader([$loader, 'loadClass']);
         $_SESSION = []; // Define session
-
-        $I->amOnRoute('login');
-        $this->fillForm(self::$credentials, $I);
-
     }
 
 
