@@ -38,7 +38,7 @@
                     </li>
                 <?php else: ?>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo $view['router']->path('logout') ?>">
                             <?= $view['translator']->trans('Logout'); ?>
                         </a>
                     </li>
