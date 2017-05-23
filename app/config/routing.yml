@@ -1,5 +1,7 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+# Route for implementing the logout functionality:
 logout:
     path: /logout

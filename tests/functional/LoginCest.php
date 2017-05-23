@@ -29,12 +29,6 @@ class LoginCest
         '_password' => 'wrong_password',
     ];
 
-    public function _before()
-    {
-        $loader = require __DIR__.'/../../vendor/autoload.php';
-        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
-        $_SESSION = []; // Define session
-    }
 
     public function testRegisterCorrect(\FunctionalTester $I)
     {

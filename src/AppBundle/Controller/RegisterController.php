@@ -44,7 +44,7 @@ class RegisterController extends Controller
     /**
      * @Route("/register-success", name="success")
      */
-    public function succesAction(Request $request)
+    public function succesAction()
     {
         return $this->render('register/success.html.php');
     }

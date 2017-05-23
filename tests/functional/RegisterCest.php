@@ -2,9 +2,8 @@
 
 namespace tests\functional;
 
-use Doctrine\Common\Annotations\AnnotationRegistry;
-
-class RegisterCest {
+class RegisterCest
+{
 
     /**
      * Correct form.
@@ -27,14 +26,6 @@ class RegisterCest {
         'form[password]' => 'password',
         'form[passwordConfirmation]' => 'wrong_confirmation'
     ];
-
-    public function _before()
-    {
-        $loader = require __DIR__.'/../../vendor/autoload.php';
-        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
-        $_SESSION = []; // Define session
-    }
-
 
     public function testRegisterCorrect(\FunctionalTester $I)
     {

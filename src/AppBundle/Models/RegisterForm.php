@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Created by Johan Kladder & Sebe Jan Vogel.
+ *
+ * This file was created for the SH-frontend application.
+ * Date: 23-5-17
+ * Time: 21:53
+ */
+
 namespace AppBundle\Models;
 
 use Symfony\Component\Validator\Constraints as Assert;

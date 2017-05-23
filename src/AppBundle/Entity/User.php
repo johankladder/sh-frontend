@@ -7,7 +7,7 @@
  * Date: 23-5-17
  * Time: 19:06
  */
-// src/AppBundle/Entity/User.php
+
 namespace AppBundle\Entity;
 
 use Symfony\Component\Security\Core\User\EquatableInterface;
