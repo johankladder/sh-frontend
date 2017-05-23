@@ -6,13 +6,6 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 
 class RegisterCest {
 
-    public function _before()
-    {
-        $loader = require __DIR__.'/../../vendor/autoload.php';
-        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
-        $_SESSION = []; // Define session
-    }
-
     /**
      * Correct form.
      * @var array
@@ -34,6 +27,27 @@ class RegisterCest {
         'form[password]' => 'password',
         'form[passwordConfirmation]' => 'wrong_confirmation'
     ];
+
+    /**
+     * Login credentials
+     * @var array
+     */
+    public static $credentials = [
+        '_username' => 'admin',
+        '_password' => 'asdasd',
+    ];
+
+    public function _before(\FunctionalTester $I)
+    {
+        $loader = require __DIR__.'/../../vendor/autoload.php';
+        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+        $_SESSION = []; // Define session
+
+        $I->amOnRoute('login');
+        $this->fillForm(self::$credentials, $I);
+
+    }
+
 
     public function testRegisterCorrect(\FunctionalTester $I)
     {
