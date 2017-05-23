@@ -1,5 +1,5 @@
 <?php
-use Doctrine\Common\Annotations\AnnotationRegistry;
+use Helper\AuthenticatedTest;
 
 /**
  * Created by Johan Kladder & Sebe Jan Vogel.
@@ -8,17 +8,8 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
  * Date: 23-5-17
  * Time: 18:12
  */
-class LoginCest
+class LoginCest extends AuthenticatedTest
 {
-
-    /**
-     * Correct form. (Admin)
-     * @var array
-     */
-    public static $correctForm = [
-        '_username' => 'admin',
-        '_password' => 'asdasd',
-    ];
 
     /**
      * Wrong password form (Admin)
@@ -29,16 +20,14 @@ class LoginCest
         '_password' => 'wrong_password',
     ];
 
-
-    public function testRegisterCorrect(\FunctionalTester $I)
+    public function testRegisterCorrect(FunctionalTester $I)
     {
         $I->wantTo('Login as admin correctly :)');
-        $I->amOnRoute('login');
-        $this->fillForm(self::$correctForm, $I);
+        $this->loginAsAdmin($I);
         $I->dontSee('Inloggegevens zijn niet correct');
     }
 
-    public function testRegisterIncorrect(\FunctionalTester $I)
+    public function testRegisterIncorrect(FunctionalTester $I)
     {
         $I->wantTo('Test login with wrong password :(');
         $I->amOnPage('/login');
@@ -49,15 +38,9 @@ class LoginCest
     public function testGoneEntries(FunctionalTester $I)
     {
         $I->wantTo('Test if login specific entries are gone when authorized! :)');
-        $I->amOnRoute('login');
-        $this->fillForm(self::$correctForm, $I);
+        $this->loginAsAdmin($I);
         $I->dontSee('Inloggen');
         $I->dontSee('Registreer');
-    }
-
-    private function fillForm(array $params, \FunctionalTester $I)
-    {
-        $I->submitForm('form', $params);
     }
 
 }

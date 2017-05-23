@@ -1,7 +1,5 @@
 <?php
 
-namespace tests\functional;
-
 class RegisterCest
 {
 
@@ -27,7 +25,7 @@ class RegisterCest
         'form[passwordConfirmation]' => 'wrong_confirmation'
     ];
 
-    public function testRegisterCorrect(\FunctionalTester $I)
+    public function testRegisterCorrect(FunctionalTester $I)
     {
         $I->wantTo('Test register correctly! :)');
         $I->amOnRoute('register');
@@ -35,7 +33,7 @@ class RegisterCest
         $I->see('Registratie voltooid!');
     }
 
-    public function testRegisterIncorrect1(\FunctionalTester $I)
+    public function testRegisterIncorrect1(FunctionalTester $I)
     {
         $I->wantTo('Test register with wrong confirmation password! :(');
         $I->amOnPage('/register');
@@ -43,7 +41,7 @@ class RegisterCest
         $I->dontSee('Registratie voltooid!');
     }
 
-    private function fillForm(array $params, \FunctionalTester $I)
+    private function fillForm(array $params, FunctionalTester $I)
     {
         $I->submitForm('form', $params);
     }
