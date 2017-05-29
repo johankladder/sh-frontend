@@ -37,7 +37,7 @@ class UserProvider implements UserProviderInterface
             $username = 'admin';
             $password = 'asdasd';
             $salt = null;
-            $roles = ['ROLE_ADMIN'];
+            $roles = ['ROLE_USER'];
 
             return new User($username, $password, $salt, $roles);
         }

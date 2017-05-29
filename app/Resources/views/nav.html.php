@@ -15,17 +15,19 @@
         <!-- Menu -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#"><?= $view['translator']->trans('Map'); ?></a></li>
-                <li><a href="#"><?= $view['translator']->trans('My Stadiums'); ?></a></li>
-                <li><a href="#"><?= $view['translator']->trans('Top List'); ?></a></li>
-                <li><a href="#"><?= $view['translator']->trans('Profile'); ?></a></li>
+                <?php if($view['security']->isGranted('ROLE_USER')) : ?>
+                    <li><a href="#"><?= $view['translator']->trans('Map'); ?></a></li>
+                    <li><a href="#"><?= $view['translator']->trans('My Stadiums'); ?></a></li>
+                    <li><a href="#"><?= $view['translator']->trans('Top List'); ?></a></li>
+                    <li><a href="#"><?= $view['translator']->trans('Profile'); ?></a></li>
+                <?php endif; ?>
             </ul>
 
             <!-- Settings side-->
             <ul class="nav navbar-nav navbar-right">
 
                 <!-- Login side-->
-                <?php if (!$view['security']->isGranted('ROLE_ADMIN')): ?>
+                <?php if (!$view['security']->isGranted('ROLE_USER')): ?>
                     <li>
                         <a href="<?php echo $view['router']->path('login') ?>">
                             <?= $view['translator']->trans('Login'); ?>
@@ -37,6 +39,11 @@
                         </a>
                     </li>
                 <?php else: ?>
+                    <li>
+                        <a href="<?php echo $view['router']->path('change-password') ?>">
+                            <?= $view['translator']->trans('Change password'); ?>
+                        </a>
+                    </li>
                     <li>
                         <a href="<?php echo $view['router']->path('logout') ?>">
                             <?= $view['translator']->trans('Logout'); ?>
