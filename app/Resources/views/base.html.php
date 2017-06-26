@@ -19,7 +19,7 @@
     <?php require(__DIR__ . '/nav.html.php'); ?>
 
     <!-- View content -->
-    <div id="content">
+    <div class="content background">
         <?php $view['slots']->output('body') ?>
     </div>
 </body>
