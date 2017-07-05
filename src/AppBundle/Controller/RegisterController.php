@@ -36,7 +36,8 @@ class RegisterController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $registerForm = $form->getData();
-            $status = $registerForm->send();
+            $provider = $this->get('api_provider');
+            $status = $registerForm->send($provider);
             if ($status) {
                 return $this->redirectToRoute('success');
             }

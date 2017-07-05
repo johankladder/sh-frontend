@@ -10,3 +10,6 @@ services:
 services:
     app.api_user_provider:
         class: AppBundle\Entity\UserProvider
+    api_provider:
+        class: AppBundle\Service\ApiService
+        arguments: ['%api_location%']

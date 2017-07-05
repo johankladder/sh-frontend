@@ -10,6 +10,7 @@
 
 namespace AppBundle\Models;
 
+use AppBundle\Service\ApiService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -108,9 +109,10 @@ class RegisterForm
     /**
      * TODO: Make this abstract, as other models need API communication as well...
      */
-    public function send()
+    public function send(ApiService $service)
     {
-        $location = 'http://localhost:4567/register';
+
+        $location = ApiService::$API_LOCATION . '/register';
 
         $client = new Client();
 
