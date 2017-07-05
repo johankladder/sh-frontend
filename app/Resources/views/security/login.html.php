@@ -15,26 +15,19 @@
 <?php $view['slots']->start('body') ?>
 
 <div class="login-view">
-    <?php if ($error): ?>
-        <div>
-            <?= $view['translator']->trans($error->getMessage()) ?>
+    <form action="<?php echo $view['router']->path('login') ?>" method="post">
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" name="_username"
+                   value="<?php echo $last_username ?>"/>
         </div>
-    <?php endif ?>
-    <div class="container">
-        <form action="<?php echo $view['router']->path('login') ?>" method="post">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username" name="_username"
-                       value="<?php echo $last_username ?>"/>
-            </div>
-            <div class="input-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="_password"/>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="_password"/>
 
-                <button class="btn btn-default btn-block form-button" type="submit">login</button>
-            </div>
-        </form>
-    </div>
+            <button class="btn btn-default btn-block form-button" type="submit">login</button>
+        </div>
+    </form>
 </div>
 
 <?php $view['slots']->stop() ?>
