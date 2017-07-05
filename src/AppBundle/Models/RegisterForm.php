@@ -112,7 +112,7 @@ class RegisterForm
     public function send(ApiService $service)
     {
 
-        $location = ApiService::$API_LOCATION . '/register';
+        $location = $service->getLocation() . '/register';
 
         $client = new Client();
 
