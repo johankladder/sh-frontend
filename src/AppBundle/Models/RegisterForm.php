@@ -10,6 +10,8 @@
 
 namespace AppBundle\Models;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
@@ -100,6 +102,31 @@ class RegisterForm
     public function isPasswordLegal()
     {
         return !strcmp($this->password, $this->passwordConfirmation);
+
+    }
+
+    /**
+     * TODO: Make this abstract, as other models need API communication as well...
+     */
+    public function send()
+    {
+        $location = 'http://localhost:4567/register';
+
+        $client = new Client();
+
+        try {
+            $r = $client->request('POST', $location, [
+                'form_params' => [
+                    'email' => $this->email,
+                    'password' => $this->password,
+                    'username' => $this->username
+                ]
+            ]);
+            return true;
+        } catch (RequestException $exception) {
+            return false; // TODO: Error messaging!
+        }
+
 
     }
 

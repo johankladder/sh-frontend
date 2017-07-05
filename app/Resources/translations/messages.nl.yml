@@ -13,6 +13,7 @@ Password: Wachtwoord
 Password confirmation: 'Wachtwoord herhalen'
 Registered successfully!: Registratie voltooid!
 Password confirmation was not the same as given password!: No
+Duplicated User: Gebruiker is al geregistreerd
 
 # Login
 Login: Inloggen
