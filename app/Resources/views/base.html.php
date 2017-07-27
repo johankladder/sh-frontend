@@ -15,13 +15,13 @@
 </head>
 
 <!-- Body -->
-<body>
+<body class="background">
 
 <!-- Nav -->
 <?php require(__DIR__ . '/nav.html.php'); ?>
 
 <!-- View content -->
-<div class="content background">
+<div class="content">
     <?php if (isset($errors)) : ?>
         <?php foreach ($errors as $error) : ?>
             <div class="alert alert-danger">

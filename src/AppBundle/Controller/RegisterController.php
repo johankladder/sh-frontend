@@ -36,7 +36,7 @@ class RegisterController extends Controller
           return $this->redirectToRoute('success');
         }
 
-        return $this->render('register/index.html.php', [
+        return $this->render('register/clubs.html.php', [
           'form' => $form->createView()
         ]);
     }
